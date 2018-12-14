@@ -37,7 +37,7 @@ Check **generated .prototxt** directory.
     $ tar xzf ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
     $ python ssdlite/dump_tensorflow_weights.py
 ```
-    Check **generated contents of ./output/** directory.
+Check **generated contents of ./output/** directory.
 
 3. Use load_caffe_weights.py to load the dumped weights to deploy.caffemodel.  
 ```
@@ -47,7 +47,7 @@ Check **generated .prototxt** directory.
     // for ssdlite
     $ python ssdlite/load_caffe_weigts.py
 ```
-    Check **generated deploy.caffemodel**.
+Check **generated deploy.caffemodel**.
 
 4. Use the code in src to accelerate your training if you have a cudnn7, or add "engine: CAFFE" to your depthwise convolution layer to solve the memory issue.
 5. The original tensorflow model is trained on MSCOCO dataset, maybe you need deploy.caffemodel for VOC dataset, use coco2voc.py to get deploy_voc.caffemodel.
