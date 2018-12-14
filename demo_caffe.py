@@ -6,8 +6,8 @@ sys.path.insert(0, caffe_root + 'python')
 import caffe  
 
 
-net_file= 'ssdlite/coco/deploy.prototxt'
-caffe_model='ssdlite/deploy.caffemodel'  
+net_file= 'deploy.prototxt'
+caffe_model='deploy.caffemodel'  
 test_dir = "images"
 
 caffe.set_mode_cpu()
