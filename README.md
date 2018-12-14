@@ -5,15 +5,61 @@ Caffe implementation of SSD detection on MobileNetv2, converted from tensorflow.
 Tensorflow and Caffe version [SSD](https://github.com/weiliu89/caffe) is properly installed on your computer.
 
 ### Usage
-0. Firstly you should download the original model from [tensorflow](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md).
-1. Use gen_model.py to generate the train.prototxt and deploy.prototxt (or use the default prototxt).
+### **Notice!: As of now ssd/ version is working fine, but ssdlite/ version bellow is not working correctly.**
+
+0. Firstly you should download the original model from [tensorflow](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md).  
 ```
-python gen_model.py -s deploy -c 91 >deploy.prototxt
+    $ pip install tensorflow==1.5
+``` 
+
+1. Use gen_model.py to generate the train.prototxt and deploy.prototxt (or use the default prototxt).  
+coco/labelmap_coco.prototxt includes **10** name: 'N/A' and **10** display_name: 'N/A' and background, so number of **classes is 91(=80+1+10)**. 
 ```
-2. Use dump_tensorflow_weights.py to dump the weights of conv layer and batchnorm layer.
-3. Use load_caffe_weights.py to load the dumped weights to deploy.caffemodel.
+    // -c 91 means category number of coco included 'N/A'(==10 items) and background.
+    
+    // for ssd
+    $ python ssd/gen_model.py -s deploy -c 91 >deploy.prototxt
+    
+    // for ssdlite
+    $python ssdlite/gen_model.py -s deploy -c 91 >deploy.prototxt
+```
+    Check **generated *.prototxt** directory.
+    
+2. Use dump_tensorflow_weights.py to dump the weights of conv layer and batchnorm layer.  
+```
+    // for ssd
+    $ wget  http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+    $ tar xzf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+    $ python ssd/dump_tensorflow_weights.py
+    
+    // for ssdlite
+    $ wget http://download.tensorflow.org/models/object_detection/ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
+    $ tar xzf ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
+    $ python ssdlite/dump_tensorflow_weights.py
+```
+    Check **generated contents of ./output/** directory.
+
+3. Use load_caffe_weights.py to load the dumped weights to deploy.caffemodel.  
+```
+    // for ssd
+    $ python ssd/load_caffe_weigts.py
+
+    // for ssdlite
+    $ python ssdlite/load_caffe_weigts.py
+```
+    Check **generated deploy.caffemodel**.
+
 4. Use the code in src to accelerate your training if you have a cudnn7, or add "engine: CAFFE" to your depthwise convolution layer to solve the memory issue.
 5. The original tensorflow model is trained on MSCOCO dataset, maybe you need deploy.caffemodel for VOC dataset, use coco2voc.py to get deploy_voc.caffemodel.
+
+### Attempt Demo Scripts
+Try Object Detection Demo to check **generated deploy.prototxt and deploy.caffemodel**.
+
+    // modify demo script
+    $ vi demo_caffe.py
+    net_file    = 'deploy.prototxt'
+    caffe_model = 'deploy.caffemodel'
+    $ python demo_caffe.py
 
 ### Train your own dataset
 1. Generate the trainval_lmdb and test_lmdb from your dataset.
