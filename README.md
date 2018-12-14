@@ -23,7 +23,7 @@ coco/labelmap_coco.prototxt includes **10** name: 'N/A' and **10** display_name:
     // for ssdlite
     $python ssdlite/gen_model.py -s deploy -c 91 >deploy.prototxt
 ```
-    Check **generated *.prototxt** directory.
+    Check **generated .prototxt** directory.
     
 2. Use dump_tensorflow_weights.py to dump the weights of conv layer and batchnorm layer.  
 ```
