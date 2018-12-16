@@ -1,7 +1,7 @@
 # MobileNetv2-SSDLite
 Caffe implementation of SSD detection on MobileNetv2, converted from tensorflow.  
 
-This repo. **provides deploy.caffemodel and deploy.prototxt trained via COCO dataset** that work fine for object detection task. If you want to remake your caffemodel and prototxt via own dataset then **read "how to make new caffemodel and prototxt"** section.  
+This repo. **provides deploy.caffemodel and deploy.prototxt trained via COCO dataset** that work fine for object detection task. If you want to remake your caffemodel and prototxt via own dataset then **read "how to make caffemodel and prototxt in this repo."** section.  
 
 ### Prerequisites
 Tensorflow and Caffe version [SSD](https://github.com/weiliu89/caffe) is properly installed on your computer.
@@ -12,7 +12,7 @@ Detection Demo bellow,
     $ python demo_caffe.py
 ```
 
-### How to make new caffemodel and prototxt
+### How to make caffemodel and prototxt in this repo.
 
 #### **Notice!: As of now ssd/ version is working fine, but ssdlite/ version bellow is not working correctly.**
 
