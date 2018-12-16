@@ -16,7 +16,7 @@ Detection Demo bellow,
 
 #### **Notice!: As of now ssd/ version is working fine, but ssdlite/ version bellow is not working correctly.**
 
-0. Firstly you should download the original model from [Tensorflow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md).  
+0. Firstly you should download the original model from [Tensorflow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) and install tensorflow framework.  
 ```
     $ pip install tensorflow==1.5
 ``` 
