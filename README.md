@@ -12,6 +12,8 @@ Detection Demo bellow,
     $ python demo_caffe.py
 ```
 
+![](files/demo_caffe.png)
+
 ### How to make caffemodel and prototxt in this repo.
 
 #### **Notice!: As of now ssd/ version is working fine, but ssdlite/ version bellow is not working correctly.**
