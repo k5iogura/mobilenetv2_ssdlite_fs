@@ -3,8 +3,15 @@ Caffe implementation of SSD detection on MobileNetv2, converted from tensorflow.
 
 This repo. **provides deploy.caffemodel and deploy.prototxt trained via COCO dataset** that work fine for object detection task. If you want to remake your caffemodel and prototxt via own dataset then **read "how to make caffemodel and prototxt in this repo."** section.  
 
+### Depends
+- [Tensorflow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
+
+### Reference original
+- [Caffe implementation of SSD and SSDLite detection on MobileNetv2, converted from tensorflow. ](https://github.com/chuanqi305/MobileNetv2-SSDLite)
+
 ### Prerequisites
-Tensorflow and Caffe version [SSD](https://github.com/weiliu89/caffe) is properly installed on your computer.
+- Tensorflow and Caffe version [SSD](https://github.com/weiliu89/caffe) is properly installed on your computer.
+- Ubuntu16.04 on PC, update and upgrade
 
 ### Usage
 Detection Demo bellow,
@@ -75,13 +82,14 @@ Try Object Detection Demo to check **generated deploy.prototxt and deploy.caffem
 ### Train your own dataset
 1. Generate the trainval_lmdb and test_lmdb from your dataset.
 2. Write a labelmap.prototxt
-3. Use gen_model.py to generate some prototxt files, replace the "CLASS_NUM" with class number of your own dataset.
+3. Use gen_model.py to generate some prototxt files, replace the "CLASS_NUM" with class number of your own dataset such as coco class number 91(=80class + 10 stuff + 1 background)
 ```
-python gen_model.py -s train -c CLASS_NUM >train.prototxt
-python gen_model.py -s test -c CLASS_NUM >test.prototxt
+python gen_model.py -s train  -c CLASS_NUM >train.prototxt
+python gen_model.py -s test   -c CLASS_NUM >test.prototxt
 python gen_model.py -s deploy -c CLASS_NUM >deploy.prototxt
 ```
-4. Copy coco/solver_train.prototxt and coco/train.sh to your project and start training.
+4. Copy coco/solver_train.prototxt and coco/train.sh to your project and start training.  
+   replace path to lmdb, prototxt file names and caffe root path, etc.
 
 ### Note
 There are some differences between caffe and tensorflow implementation:
